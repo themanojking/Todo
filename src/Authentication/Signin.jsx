@@ -76,14 +76,14 @@ function Signin() {
         }, 3000);
       }
     } catch (error) {
-       Swal.fire({
-         icon: "error",
-         text: "Email or Password is invalid",
-         title: "Error",
-         timer: 3000,
-         timerProgressBar: true,
-       });
-       console.log("error :",error.message);
+      Swal.fire({
+        icon: "error",
+        text: "Email or Password is invalid",
+        title: "Error",
+        timer: 3000,
+        timerProgressBar: true,
+      });
+      console.log("error :", error.message);
     }
   };
   return (
@@ -103,9 +103,17 @@ function Signin() {
                 your to-dos effortlessly.
               </h3>
             </div>
-            <p className="text-sm text-white mt-6">
-              Copyright © 2024 | Designed and Developed by{" "}
-              <span className="font-semibold text-yellow-400">Manoj Kumar</span>
+            <p className="flex flex-wrap justify-center gap-2 text-sm text-white mt-6">
+              Copyright © 2025 | Designed and Developed by{" "}
+              <a
+                href="https://myportflio-six.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="font-semibold text-yellow-400">
+                  Manoj Kumar
+                </span>
+              </a>
             </p>
           </div>
 

@@ -43,24 +43,26 @@ function Todo() {
       console.log(error);
     }
   };
-  
+
   const handleDeleteTask = async (id) => {
     try {
       await axios.delete(`http://localhost:3000/tasks/${id}`);
       setTasks(tasks.filter((t) => t.rec_id !== id));
     } catch (error) {
-      console.error("Error deleting task :",error);
+      console.error("Error deleting task :", error);
     }
   };
-  
+
   const handleStatusTask = async (id) => {
     try {
       const res = await axios.put(`http://localhost:3000/tasks/${id}/status`);
-      setTasks((prevTasks) => prevTasks.map((task) => task.rec_id == id ? res.data : task))
+      setTasks((prevTasks) =>
+        prevTasks.map((task) => (task.rec_id == id ? res.data : task))
+      );
     } catch (error) {
       console.error("Status update failed:", error);
     }
-  }
+  };
   return (
     <>
       <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-gray-800 to-gray-900 px-4">
@@ -71,7 +73,7 @@ function Todo() {
               type="text"
               value={task}
               onKeyDown={(e) => {
-                if(e.key == "Enter") {
+                if (e.key == "Enter") {
                   handleAddTask();
                 }
               }}
@@ -97,14 +99,30 @@ function Todo() {
                 key={t.rec_id}
                 className="flex flex-row justify-around items-center text-center bg-gray-600 p-3  rounded-lg"
               >
-                <span className={`w-1/3 ${ t.rec_status ? "line-through text-gray-400" : ""}`} >{t.rec_text}</span>
+                <span
+                  className={`w-1/3 ${
+                    t.rec_status ? "line-through text-gray-400" : ""
+                  }`}
+                >
+                  {t.rec_text}
+                </span>
                 <span className="w-1/3">
-                <button onClick={() => handleStatusTask(t.rec_id)} className={`px-3 py-2 rounded ${t.rec_status ? "bg-green-500 hover:bg-green-600" : "bg-yellow-500 hover:bg-yellow-600"}`}>
-                  {t.rec_status ? "completed" : "pending"}
+                  <button
+                    onClick={() => handleStatusTask(t.rec_id)}
+                    className={`px-3 py-2 rounded ${
+                      t.rec_status
+                        ? "bg-green-500 hover:bg-green-600"
+                        : "bg-yellow-500 hover:bg-yellow-600"
+                    }`}
+                  >
+                    {t.rec_status ? "completed" : "pending"}
                   </button>
                 </span>
                 <span className="w-1/3">
-                  <button onClick={() => handleDeleteTask(t.rec_id)} className="bg-red-500 px-3 py-2 rounded hover:bg-red-600 ">
+                  <button
+                    onClick={() => handleDeleteTask(t.rec_id)}
+                    className="bg-red-500 px-3 py-2 rounded hover:bg-red-600 "
+                  >
                     Delete
                   </button>
                 </span>
@@ -114,7 +132,9 @@ function Todo() {
         </div>
         <p className="flex flex-wrap justify-center gap-2 text-sm text-white mt-6">
           Copyright © 2025 | Designed and Developed by{" "}
-          <span className="font-semibold text-yellow-400">Manoj Kumar</span>
+          <a href="https://myportflio-six.vercel.app/" target="_blank">
+            <span className="font-semibold text-yellow-400">Manoj Kumar</span>
+          </a>
         </p>
       </div>
     </>
