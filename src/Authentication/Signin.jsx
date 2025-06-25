@@ -53,7 +53,7 @@ function Signin() {
 
     setErrors({});
     try {
-      const response = await axios.post("http://localhost:3000/login", {
+      const response = await axios.post("https://server-flax-nu.vercel.app/login", {
         email: form.email,
         password: form.password,
       });

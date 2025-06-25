@@ -60,7 +60,7 @@ function Signup() {
 
     setErrors({});
     try {
-      const response = await axios.post("http://localhost:3000/register", {
+      const response = await axios.post("https://server-flax-nu.vercel.app/register", {
         fullName: form.fullName,
         email: form.email,
         password: form.password,

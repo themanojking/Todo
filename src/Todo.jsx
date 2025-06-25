@@ -11,7 +11,7 @@ function Todo() {
     const fetchTasks = async () => {
       const token = localStorage.getItem("token");
       try {
-        const res = await axios.get("http://localhost:3000/tasks", {
+        const res = await axios.get("https://server-flax-nu.vercel.app/tasks", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -29,7 +29,7 @@ function Todo() {
     if (!task.trim()) return;
     try {
       const res = await axios.post(
-        "http://localhost:3000/tasks",
+        "https://server-flax-nu.vercel.app/tasks",
         { rec_text: task },
         {
           headers: {
@@ -46,7 +46,7 @@ function Todo() {
 
   const handleDeleteTask = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/tasks/${id}`);
+      await axios.delete(`https://server-flax-nu.vercel.app/tasks/${id}`);
       setTasks(tasks.filter((t) => t.rec_id !== id));
     } catch (error) {
       console.error("Error deleting task :", error);
@@ -55,7 +55,7 @@ function Todo() {
 
   const handleStatusTask = async (id) => {
     try {
-      const res = await axios.put(`http://localhost:3000/tasks/${id}/status`);
+      const res = await axios.put(`https://server-flax-nu.vercel.app/tasks/${id}/status`);
       setTasks((prevTasks) =>
         prevTasks.map((task) => (task.rec_id == id ? res.data : task))
       );
